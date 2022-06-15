@@ -1,37 +1,27 @@
-import React, { useCallback } from "react";
+import React, { useEffect, useState } from "react";
 
 // Components
-import Webcam from "../../components/Webcam";
-
-// Hooks
-import { useModel } from "../../hooks/useModel";
-
-// Model
-import { ASL_MODEL } from "../../Model";
+import Prediction from "../../components/Prediction";
 
 // TODO: Remove screen after testing
 const Test = () => {
-  const { isModelLoaded, predictClass } = useModel(ASL_MODEL);
+  const [isRecording, setIsRecording] = useState(false);
+  const [predictedLetter, setPredictedLetter] = useState("");
 
-  const onUpdate = useCallback(
-    async (image: HTMLCanvasElement) => {
-      if (!isModelLoaded) {
-        return;
-      }
-      const detectedClasses = await predictClass(image, 0.75);
-      if (detectedClasses) {
-        // Add to state
-        console.log("PREDICTED CLASSES: ", detectedClasses);
-      }
-    },
-    [isModelLoaded, predictClass]
-  );
+  useEffect(() => {
+    console.log("isRecording", isRecording);
+    console.log("predictedLetter", predictedLetter);
+  }, [isRecording, predictedLetter]);
+
   return (
-    <Webcam
-      canvas={{ width: 250, height: 250 }}
-      updateInterval={100}
-      onUpdate={onUpdate}
-    />
+    <>
+      <Prediction
+        isRecording={isRecording}
+        predictedLetter={predictedLetter}
+        setPredictedLetter={setPredictedLetter}
+      />
+      <button onClick={() => setIsRecording(!isRecording)}>Press</button>
+    </>
   );
 };
 
