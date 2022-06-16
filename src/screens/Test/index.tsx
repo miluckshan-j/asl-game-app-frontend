@@ -49,9 +49,10 @@ const Test = () => {
       >
         <Cell
           presentCell={presentCell}
+          setPresentCell={setPresentCell}
           cellNumber={0}
           cellLetter="P"
-          predictedLetter="P"
+          // predictedLetter="P"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
@@ -60,9 +61,10 @@ const Test = () => {
         />
         <Cell
           presentCell={presentCell}
+          setPresentCell={setPresentCell}
           cellNumber={1}
           cellLetter="R"
-          predictedLetter="R"
+          // predictedLetter="R"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
@@ -71,9 +73,10 @@ const Test = () => {
         />
         <Cell
           presentCell={presentCell}
+          setPresentCell={setPresentCell}
           cellNumber={2}
           cellLetter="I"
-          predictedLetter="I"
+          // predictedLetter="I"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
@@ -82,9 +85,10 @@ const Test = () => {
         />
         <Cell
           presentCell={presentCell}
+          setPresentCell={setPresentCell}
           cellNumber={3}
           cellLetter="M"
-          predictedLetter="M"
+          // predictedLetter="M"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
@@ -93,9 +97,10 @@ const Test = () => {
         />
         <Cell
           presentCell={presentCell}
+          setPresentCell={setPresentCell}
           cellNumber={4}
           cellLetter="O"
-          predictedLetter="O"
+          // predictedLetter="O"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
