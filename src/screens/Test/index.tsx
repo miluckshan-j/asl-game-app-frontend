@@ -12,10 +12,26 @@ const Test = () => {
   const [word, setWord] = useState("PRIMO");
   const [isCheck, setIsCheck] = useState(false);
 
+  // useEffect(() => {
+  //   console.log("isRecording", isRecording);
+  //   console.log("predictedLetter", predictedLetter);
+  // }, [isRecording, predictedLetter]);
+
   useEffect(() => {
-    console.log("isRecording", isRecording);
-    console.log("predictedLetter", predictedLetter);
-  }, [isRecording, predictedLetter]);
+    if (isRecording) {
+      let startTime = new Date().getTime();
+      console.log("Starting interval");
+      const interval = setInterval(() => {
+        console.log("Interval is running");
+        if (new Date().getTime() - startTime > 5000) {
+          clearInterval(interval);
+          setIsRecording(false);
+          console.log("Interval cleared");
+          return;
+        }
+      }, 1000);
+    }
+  }, [isRecording]);
 
   return (
     <>
@@ -24,8 +40,8 @@ const Test = () => {
         predictedLetter={predictedLetter}
         setPredictedLetter={setPredictedLetter}
       /> */}
-      {/* <button onClick={() => setIsRecording(!isRecording)}>Press</button> */}
-      <div
+      <button onClick={() => setIsRecording(true)}>Press</button>
+      {/* <div
         style={{
           display: "flex",
           justifyContent: "space-evenly",
@@ -78,7 +94,7 @@ const Test = () => {
           isCheck={isCheck}
         />
       </div>
-      <button onClick={() => setIsCheck(!isCheck)}>Check</button>
+      <button onClick={() => setIsCheck(!isCheck)}>Check</button> */}
     </>
   );
 };
