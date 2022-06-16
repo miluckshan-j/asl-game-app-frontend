@@ -5,7 +5,10 @@ interface CellProps {
   cellNumber: number;
   cellLetter: string;
   predictedLetter: string;
+  predictions: string[];
+  setPredictions: Function;
   word: string;
+  isRecording: boolean;
   isCheck: boolean;
 }
 
@@ -24,6 +27,25 @@ const Cell = (props: CellProps) => {
       setIsDisabled(false);
     }
   }, [props.presentCell]);
+
+  useEffect(() => {
+    if (
+      props.cellNumber === props.presentCell &&
+      props.predictions.length > 0 &&
+      props.isRecording === false
+    ) {
+      // Get highest occurance
+      console.log(
+        `${props.isRecording} || Cell ${props.cellNumber} - Predictions: ${props.predictions}`
+      );
+      props.setPredictions([]);
+    }
+  }, [
+    props.cellNumber,
+    props.presentCell,
+    props.predictions,
+    props.isRecording,
+  ]);
 
   useEffect(() => {
     if (props.isCheck) {

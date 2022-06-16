@@ -8,40 +8,39 @@ import Cell from "../../components/Cell";
 const Test = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [predictedLetter, setPredictedLetter] = useState("");
+  const [predictions, setPredictions] = useState([""]);
   const [presentCell, setPresentCell] = useState(0);
   const [word, setWord] = useState("PRIMO");
   const [isCheck, setIsCheck] = useState(false);
 
-  // useEffect(() => {
-  //   console.log("isRecording", isRecording);
-  //   console.log("predictedLetter", predictedLetter);
-  // }, [isRecording, predictedLetter]);
-
   useEffect(() => {
     if (isRecording) {
       let startTime = new Date().getTime();
-      console.log("Starting interval");
       const interval = setInterval(() => {
-        console.log("Interval is running");
         if (new Date().getTime() - startTime > 5000) {
-          clearInterval(interval);
           setIsRecording(false);
-          console.log("Interval cleared");
+          clearInterval(interval);
           return;
         }
       }, 1000);
     }
   }, [isRecording]);
 
+  useEffect(() => {
+    if (isRecording) {
+      setPredictions((oldArray) => [...oldArray, predictedLetter]);
+    }
+  }, [isRecording, predictedLetter]);
+
   return (
     <>
-      {/* <Prediction
+      <Prediction
         isRecording={isRecording}
         predictedLetter={predictedLetter}
         setPredictedLetter={setPredictedLetter}
-      /> */}
+      />
       <button onClick={() => setIsRecording(true)}>Press</button>
-      {/* <div
+      <div
         style={{
           display: "flex",
           justifyContent: "space-evenly",
@@ -52,49 +51,59 @@ const Test = () => {
           presentCell={presentCell}
           cellNumber={0}
           cellLetter="P"
-          // predictedLetter={predictedLetter}
           predictedLetter="P"
+          predictions={predictions}
+          setPredictions={setPredictions}
           word={word}
+          isRecording={isRecording}
           isCheck={isCheck}
         />
         <Cell
           presentCell={presentCell}
           cellNumber={1}
           cellLetter="R"
-          // predictedLetter={predictedLetter}
           predictedLetter="R"
+          predictions={predictions}
+          setPredictions={setPredictions}
           word={word}
+          isRecording={isRecording}
           isCheck={isCheck}
         />
         <Cell
           presentCell={presentCell}
           cellNumber={2}
           cellLetter="I"
-          // predictedLetter={predictedLetter}
           predictedLetter="I"
+          predictions={predictions}
+          setPredictions={setPredictions}
           word={word}
+          isRecording={isRecording}
           isCheck={isCheck}
         />
         <Cell
           presentCell={presentCell}
           cellNumber={3}
           cellLetter="M"
-          // predictedLetter={predictedLetter}
           predictedLetter="M"
+          predictions={predictions}
+          setPredictions={setPredictions}
           word={word}
+          isRecording={isRecording}
           isCheck={isCheck}
         />
         <Cell
           presentCell={presentCell}
           cellNumber={4}
           cellLetter="O"
-          // predictedLetter={predictedLetter}
           predictedLetter="O"
+          predictions={predictions}
+          setPredictions={setPredictions}
           word={word}
+          isRecording={isRecording}
           isCheck={isCheck}
         />
       </div>
-      <button onClick={() => setIsCheck(!isCheck)}>Check</button> */}
+      <button onClick={() => setIsCheck(!isCheck)}>Check</button>
     </>
   );
 };
