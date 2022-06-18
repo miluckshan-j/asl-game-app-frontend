@@ -7,6 +7,9 @@ import Cell from "../../components/Cell";
 // Model
 import { ModelAnswer } from "../../Model";
 
+// Utils
+import { VALID_GUESSES } from "../../utils/validGuesses";
+
 // TODO: Remove screen after testing
 const Test = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -17,7 +20,7 @@ const Test = () => {
   const [isCheck, setIsCheck] = useState(false);
   const [tries, setTries] = useState(1);
   const [answer, setAnswer] = useState({});
-  const [rowAnswer, setRowAnswer] = useState({});
+  const [rowAnswer, setRowAnswer] = useState<any>({});
 
   useEffect(() => {
     if (isRecording) {
@@ -39,23 +42,59 @@ const Test = () => {
   }, [isRecording, predictedLetter]);
 
   useEffect(() => {
-    setRowAnswer((rowAns) => ({ ...rowAns, [tries]: answer }));
+    setRowAnswer((rowAns: any) => ({ ...rowAns, [tries.toString()]: answer }));
   }, [answer]);
+
+  useEffect(() => {
+    if (tries === 3) {
+      console.log("Game Over!");
+    }
+  }, [tries]);
 
   const answerHandler = (event: ModelAnswer) => {
     setAnswer((ans) => ({
       ...ans,
-      [event.cellNumber]: { value: event.value, guess: event.guess },
+      [event.cellNumber.toString()]: { value: event.value, guess: event.guess },
     }));
   };
 
   const checkAnswer = () => {
     if (presentCell === 5) {
       setIsCheck(true);
-      //   check word exist
-      //   add to answer array
-      //   tries ++. NOTE: Increase only if answer not right
-      //   reset present cell to 0
+      const guessedWord =
+        rowAnswer[tries.toString()]["0"].value +
+        rowAnswer[tries.toString()]["1"].value +
+        rowAnswer[tries.toString()]["2"].value +
+        rowAnswer[tries.toString()]["3"].value +
+        rowAnswer[tries.toString()]["4"].value;
+      console.log("guessedWord", guessedWord);
+      // Check if valid word
+      if (VALID_GUESSES.includes(guessedWord)) {
+        // Check guess word is the correct word
+        if (guessedWord === word) {
+          console.log("Game Over!");
+          setTries(3);
+        } else {
+          setTries(tries + 1);
+          setPresentCell(0);
+        }
+      }
+      // Word not valid
+      else {
+        // alert("Enter a valid word!");
+        // Clear row
+        // Present cell = 0
+
+        // Assuming word is valid. Remove later and use above logic
+        console.log("WORD NOT VALID");
+        if (guessedWord === word) {
+          console.log("Game Over!");
+          setTries(3);
+        } else {
+          setTries(tries + 1);
+          setPresentCell(0);
+        }
+      }
     } else {
       setIsCheck(false);
       alert("Input all 5 letters!");
@@ -74,12 +113,16 @@ const Test = () => {
         style={{
           display: "flex",
           justifyContent: "space-evenly",
-          margin: "25px 0px",
+          margin: "25px 25px",
+          padding: "20px",
+          border: tries === 1 ? "red solid 1px" : "black solid 1px",
         }}
       >
         <Cell
           presentCell={presentCell}
           setPresentCell={setPresentCell}
+          try={1}
+          currentTry={tries}
           cellNumber={0}
           cellLetter="P"
           // predictedLetter="P"
@@ -93,6 +136,8 @@ const Test = () => {
         <Cell
           presentCell={presentCell}
           setPresentCell={setPresentCell}
+          try={1}
+          currentTry={tries}
           cellNumber={1}
           cellLetter="R"
           // predictedLetter="R"
@@ -106,6 +151,8 @@ const Test = () => {
         <Cell
           presentCell={presentCell}
           setPresentCell={setPresentCell}
+          try={1}
+          currentTry={tries}
           cellNumber={2}
           cellLetter="I"
           // predictedLetter="I"
@@ -119,6 +166,8 @@ const Test = () => {
         <Cell
           presentCell={presentCell}
           setPresentCell={setPresentCell}
+          try={1}
+          currentTry={tries}
           cellNumber={3}
           cellLetter="M"
           // predictedLetter="M"
@@ -132,6 +181,8 @@ const Test = () => {
         <Cell
           presentCell={presentCell}
           setPresentCell={setPresentCell}
+          try={1}
+          currentTry={tries}
           cellNumber={4}
           cellLetter="O"
           // predictedLetter="O"
@@ -147,7 +198,94 @@ const Test = () => {
         style={{
           display: "flex",
           justifyContent: "space-evenly",
-          margin: "25px 0px",
+          margin: "25px 25px",
+          padding: "20px",
+
+          border: tries === 2 ? "red solid 1px" : "black solid 1px",
+        }}
+      >
+        <Cell
+          presentCell={presentCell}
+          setPresentCell={setPresentCell}
+          try={2}
+          currentTry={tries}
+          cellNumber={0}
+          cellLetter="P"
+          // predictedLetter="P"
+          predictions={predictions}
+          setPredictions={setPredictions}
+          word={word}
+          isRecording={isRecording}
+          isCheck={isCheck}
+          answerHandler={answerHandler}
+        />
+        <Cell
+          presentCell={presentCell}
+          setPresentCell={setPresentCell}
+          try={2}
+          currentTry={tries}
+          cellNumber={1}
+          cellLetter="R"
+          // predictedLetter="R"
+          predictions={predictions}
+          setPredictions={setPredictions}
+          word={word}
+          isRecording={isRecording}
+          isCheck={isCheck}
+          answerHandler={answerHandler}
+        />
+        <Cell
+          presentCell={presentCell}
+          setPresentCell={setPresentCell}
+          try={2}
+          currentTry={tries}
+          cellNumber={2}
+          cellLetter="I"
+          // predictedLetter="I"
+          predictions={predictions}
+          setPredictions={setPredictions}
+          word={word}
+          isRecording={isRecording}
+          isCheck={isCheck}
+          answerHandler={answerHandler}
+        />
+        <Cell
+          presentCell={presentCell}
+          setPresentCell={setPresentCell}
+          try={2}
+          currentTry={tries}
+          cellNumber={3}
+          cellLetter="M"
+          // predictedLetter="M"
+          predictions={predictions}
+          setPredictions={setPredictions}
+          word={word}
+          isRecording={isRecording}
+          isCheck={isCheck}
+          answerHandler={answerHandler}
+        />
+        <Cell
+          presentCell={presentCell}
+          setPresentCell={setPresentCell}
+          try={2}
+          currentTry={tries}
+          cellNumber={4}
+          cellLetter="O"
+          // predictedLetter="O"
+          predictions={predictions}
+          setPredictions={setPredictions}
+          word={word}
+          isRecording={isRecording}
+          isCheck={isCheck}
+          answerHandler={answerHandler}
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          margin: "25px 25px",
+          padding: "20px",
         }}
       >
         <div>

@@ -6,6 +6,8 @@ import { ModelAnswer } from "../../Model";
 interface CellProps {
   presentCell: number;
   setPresentCell: Function;
+  try: number;
+  currentTry: number;
   cellNumber: number;
   cellLetter: string;
   // predictedLetter: string;
