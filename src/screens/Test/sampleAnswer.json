@@ -1,0 +1,52 @@
+[
+  {
+    "try": 1,
+    "answers": {
+      "0": {
+        "value": "P",
+        "guess": "NOT_FOUND"
+      },
+      "1": {
+        "value": "R",
+        "guess": "NOT_FOUND"
+      },
+      "2": {
+        "value": "I",
+        "guess": "NOT_FOUND"
+      },
+      "3": {
+        "value": "P",
+        "guess": "WRONG_SPOT"
+      },
+      "4": {
+        "value": "P",
+        "guess": "NOT_FOUND"
+      }
+    }
+  },
+  {
+    "try": 1,
+    "answers": {
+      "0": {
+        "value": "A",
+        "guess": "CORRECT_SPOT"
+      },
+      "1": {
+        "value": "L",
+        "guess": "CORRECT_SPOT"
+      },
+      "2": {
+        "value": "B",
+        "guess": "CORRECT_SPOT"
+      },
+      "3": {
+        "value": "U",
+        "guess": "WRONG_SPOT"
+      },
+      "4": {
+        "value": "M",
+        "guess": "CORRECT_SPOT"
+      }
+    }
+  }
+]

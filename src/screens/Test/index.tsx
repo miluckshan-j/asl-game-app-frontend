@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import Prediction from "../../components/Prediction";
 import Cell from "../../components/Cell";
 
+// Model
+import { ModelAnswer } from "../../Model";
+
 // TODO: Remove screen after testing
 const Test = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -12,6 +15,9 @@ const Test = () => {
   const [presentCell, setPresentCell] = useState(0);
   const [word, setWord] = useState("PRIMO");
   const [isCheck, setIsCheck] = useState(false);
+  const [tries, setTries] = useState(1);
+  const [answer, setAnswer] = useState({});
+  const [rowAnswer, setRowAnswer] = useState({});
 
   useEffect(() => {
     if (isRecording) {
@@ -31,6 +37,30 @@ const Test = () => {
       setPredictions((oldArray) => [...oldArray, predictedLetter]);
     }
   }, [isRecording, predictedLetter]);
+
+  useEffect(() => {
+    setRowAnswer((rowAns) => ({ ...rowAns, [tries]: answer }));
+  }, [answer]);
+
+  const answerHandler = (event: ModelAnswer) => {
+    setAnswer((ans) => ({
+      ...ans,
+      [event.cellNumber]: { value: event.value, guess: event.guess },
+    }));
+  };
+
+  const checkAnswer = () => {
+    if (presentCell === 5) {
+      setIsCheck(true);
+      //   check word exist
+      //   add to answer array
+      //   tries ++. NOTE: Increase only if answer not right
+      //   reset present cell to 0
+    } else {
+      setIsCheck(false);
+      alert("Input all 5 letters!");
+    }
+  };
 
   return (
     <>
@@ -58,6 +88,7 @@ const Test = () => {
           word={word}
           isRecording={isRecording}
           isCheck={isCheck}
+          answerHandler={answerHandler}
         />
         <Cell
           presentCell={presentCell}
@@ -70,6 +101,7 @@ const Test = () => {
           word={word}
           isRecording={isRecording}
           isCheck={isCheck}
+          answerHandler={answerHandler}
         />
         <Cell
           presentCell={presentCell}
@@ -82,6 +114,7 @@ const Test = () => {
           word={word}
           isRecording={isRecording}
           isCheck={isCheck}
+          answerHandler={answerHandler}
         />
         <Cell
           presentCell={presentCell}
@@ -94,6 +127,7 @@ const Test = () => {
           word={word}
           isRecording={isRecording}
           isCheck={isCheck}
+          answerHandler={answerHandler}
         />
         <Cell
           presentCell={presentCell}
@@ -106,9 +140,31 @@ const Test = () => {
           word={word}
           isRecording={isRecording}
           isCheck={isCheck}
+          answerHandler={answerHandler}
         />
       </div>
-      <button onClick={() => setIsCheck(!isCheck)}>Check</button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          margin: "25px 0px",
+        }}
+      >
+        <div>
+          <p>Tries: {tries}/5</p>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            margin: "25px 0px",
+          }}
+        >
+          <button>Quit</button>
+          <button>Clear</button>
+          <button onClick={checkAnswer}>Check</button>
+        </div>
+      </div>
     </>
   );
 };

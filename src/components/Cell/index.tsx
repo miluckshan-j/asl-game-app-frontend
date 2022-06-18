@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+// Model
+import { ModelAnswer } from "../../Model";
+
 interface CellProps {
   presentCell: number;
   setPresentCell: Function;
@@ -11,6 +14,7 @@ interface CellProps {
   word: string;
   isRecording: boolean;
   isCheck: boolean;
+  answerHandler: Function;
 }
 
 const Cell = (props: CellProps) => {
@@ -58,23 +62,30 @@ const Cell = (props: CellProps) => {
   ]);
 
   useEffect(() => {
-    if (props.isCheck) {
-      checkAnswer();
-    }
-  }, [props.isCheck]);
-
-  const checkAnswer = () => {
+    let answer: ModelAnswer = { cellNumber: props.cellNumber, value: value };
     if (value === props.cellLetter) {
-      setCellStyle({ backgroundColor: "green" });
-      //   Return cell number and predicted letter
-    } else if (props.word.includes(value)) {
-      setCellStyle({ backgroundColor: "yellow" });
-      //   Return cell number and predicted letter
+      answer.guess = "CORRECT_SPOT";
+    } else if (props.word.includes(value) && value !== "") {
+      answer.guess = "WRONG_SPOT";
     } else {
-      setCellStyle({ backgroundColor: "grey" });
-      //   Return cell number and predicted letter
+      answer.guess = "NOT_FOUND";
     }
-  };
+    props.answerHandler(answer);
+  }, [value]);
+
+  useEffect(() => {
+    if (value !== "") {
+      if (props.isCheck && props.presentCell === 5) {
+        if (value === props.cellLetter) {
+          setCellStyle({ backgroundColor: "green" });
+        } else if (props.word.includes(value) && value !== "") {
+          setCellStyle({ backgroundColor: "yellow" });
+        } else {
+          setCellStyle({ backgroundColor: "grey" });
+        }
+      }
+    }
+  }, [props.isCheck, props.presentCell]);
 
   const getHighestPrediction = (array: string[]) => {
     const maxValue = array.reduce((previous, current, i, arr) =>

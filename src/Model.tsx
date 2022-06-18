@@ -43,3 +43,9 @@ export const ASL_MODEL: Readonly<ModelDescriptor> = {
   metadataJson:
     "https://teachablemachine.withgoogle.com/models/KUlnb9rP4/metadata.json",
 };
+
+export interface ModelAnswer {
+  cellNumber: number;
+  value: string;
+  guess?: string;
+}
