@@ -7,38 +7,38 @@ interface CellProps {
   presentCell: number;
   setPresentCell: Function;
   try: number;
-  currentTry: number;
+  setTry: Function;
+  presentTry: number;
   cellNumber: number;
   cellLetter: string;
-  // predictedLetter: string;
   predictions: string[];
   setPredictions: Function;
   word: string;
+  predictedResults: any;
   isRecording: boolean;
   isCheck: boolean;
   answerHandler: Function;
 }
 
 const Cell = (props: CellProps) => {
-  const [isDisabled, setIsDisabled] = useState(true);
   const [cellStyle, setCellStyle] = useState({});
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    if (props.cellNumber === props.presentCell) {
-      setIsDisabled(false);
+    if (
+      props.cellNumber === props.presentCell &&
+      props.try === props.presentTry
+    ) {
+      setCellStyle({ border: "1px solid red" });
+    } else {
+      setCellStyle({ border: "1px solid black" });
     }
-  }, []);
-
-  useEffect(() => {
-    if (props.cellNumber === props.presentCell) {
-      setIsDisabled(false);
-    }
-  }, [props.presentCell]);
+  }, [props.cellNumber, props.presentCell, props.try, props.presentTry]);
 
   useEffect(() => {
     if (
       props.cellNumber === props.presentCell &&
+      props.try === props.presentTry &&
       props.predictions.length > 1 &&
       props.isRecording === false
     ) {
@@ -61,6 +61,8 @@ const Cell = (props: CellProps) => {
     props.presentCell,
     props.predictions,
     props.isRecording,
+    props.try,
+    props.presentTry,
   ]);
 
   useEffect(() => {
@@ -76,18 +78,26 @@ const Cell = (props: CellProps) => {
   }, [value]);
 
   useEffect(() => {
-    if (value !== "") {
-      if (props.isCheck && props.presentCell === 5) {
-        if (value === props.cellLetter) {
+    if (Object.keys(props.predictedResults).length > 0) {
+      console.log("row ans", props.predictedResults);
+      if (props.try < props.presentTry) {
+        const guess =
+          props.predictedResults[props.try.toString()][
+            props.cellNumber.toString()
+          ].guess;
+
+        if (guess === "CORRECT_SPOT") {
           setCellStyle({ backgroundColor: "green" });
-        } else if (props.word.includes(value) && value !== "") {
+        } else if (guess === "WRONG_SPOT") {
           setCellStyle({ backgroundColor: "yellow" });
-        } else {
+        } else if (guess === "NOT_FOUND") {
           setCellStyle({ backgroundColor: "grey" });
+        } else {
+          setCellStyle({ backgroundColor: "white" });
         }
       }
     }
-  }, [props.isCheck, props.presentCell]);
+  }, [props.presentTry, props.presentCell]);
 
   const getHighestPrediction = (array: string[]) => {
     const maxValue = array.reduce((previous, current, i, arr) =>
@@ -112,7 +122,7 @@ const Cell = (props: CellProps) => {
           backgroundColor: "white",
           ...cellStyle,
         }}
-        disabled={isDisabled}
+        disabled={true}
       />
     </div>
   );

@@ -52,27 +52,30 @@ const Test = () => {
   }, [tries]);
 
   const answerHandler = (event: ModelAnswer) => {
-    setAnswer((ans) => ({
-      ...ans,
-      [event.cellNumber.toString()]: { value: event.value, guess: event.guess },
-    }));
+    if (event.value !== "") {
+      setAnswer((ans) => ({
+        ...ans,
+        [event.cellNumber.toString()]: {
+          value: event.value,
+          guess: event.guess,
+        },
+      }));
+    }
   };
 
   const checkAnswer = () => {
     if (presentCell === 5) {
-      setIsCheck(true);
+      // TODO: Make a word generator
       const guessedWord =
         rowAnswer[tries.toString()]["0"].value +
         rowAnswer[tries.toString()]["1"].value +
         rowAnswer[tries.toString()]["2"].value +
         rowAnswer[tries.toString()]["3"].value +
         rowAnswer[tries.toString()]["4"].value;
-      console.log("guessedWord", guessedWord);
       // Check if valid word
       if (VALID_GUESSES.includes(guessedWord)) {
         // Check guess word is the correct word
         if (guessedWord === word) {
-          console.log("Game Over!");
           setTries(3);
         } else {
           setTries(tries + 1);
@@ -85,15 +88,15 @@ const Test = () => {
         // Clear row
         // Present cell = 0
 
-        // Assuming word is valid. Remove later and use above logic
+        // Note: Assuming word is valid. Remove later and use above logic
         console.log("WORD NOT VALID");
         if (guessedWord === word) {
-          console.log("Game Over!");
           setTries(3);
         } else {
           setTries(tries + 1);
           setPresentCell(0);
         }
+        // Note
       }
     } else {
       setIsCheck(false);
@@ -122,13 +125,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={1}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={0}
           cellLetter="P"
           // predictedLetter="P"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
@@ -137,13 +142,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={1}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={1}
           cellLetter="R"
           // predictedLetter="R"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
@@ -152,13 +159,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={1}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={2}
           cellLetter="I"
           // predictedLetter="I"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
@@ -167,13 +176,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={1}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={3}
           cellLetter="M"
           // predictedLetter="M"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
@@ -182,13 +193,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={1}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={4}
           cellLetter="O"
           // predictedLetter="O"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
@@ -208,13 +221,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={2}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={0}
           cellLetter="P"
           // predictedLetter="P"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
@@ -223,13 +238,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={2}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={1}
           cellLetter="R"
           // predictedLetter="R"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
@@ -238,13 +255,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={2}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={2}
           cellLetter="I"
           // predictedLetter="I"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
@@ -253,13 +272,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={2}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={3}
           cellLetter="M"
           // predictedLetter="M"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
@@ -268,13 +289,15 @@ const Test = () => {
           presentCell={presentCell}
           setPresentCell={setPresentCell}
           try={2}
-          currentTry={tries}
+          setTry={setTries}
+          presentTry={tries}
           cellNumber={4}
           cellLetter="O"
           // predictedLetter="O"
           predictions={predictions}
           setPredictions={setPredictions}
           word={word}
+          predictedResults={rowAnswer}
           isRecording={isRecording}
           isCheck={isCheck}
           answerHandler={answerHandler}
