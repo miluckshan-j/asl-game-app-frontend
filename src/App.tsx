@@ -2,6 +2,9 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
+// Views
+import Default from "./views/Default";
+
 // Screens
 import Home from "./screens/Home";
 import Learn from "./screens/Learn";
@@ -18,14 +21,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="home" element={<Home />} />
-          <Route path="learn" element={<Learn />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="test" element={<Test />} />
-        </Routes>
+        <Default>
+          <Routes>
+            <Route path="/" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="home" element={<Home />} />
+            <Route path="learn" element={<Learn />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="test" element={<Test />} />
+          </Routes>
+        </Default>
       </BrowserRouter>
     </div>
   );
