@@ -9,6 +9,7 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import {
+  AiOutlineHome,
   AiOutlineQuestionCircle,
   AiOutlineSetting,
   AiOutlineUser,
@@ -27,10 +28,13 @@ const Header = () => {
       borderBottom="1px solid #CBD5E0"
     >
       <Box>
-        <IconButton
-          aria-label="How to play"
-          icon={<AiOutlineQuestionCircle />}
-        />
+        <ButtonGroup gap="2">
+          <IconButton aria-label="Home" icon={<AiOutlineHome />} />
+          <IconButton
+            aria-label="How to play"
+            icon={<AiOutlineQuestionCircle />}
+          />
+        </ButtonGroup>
       </Box>
       <Spacer />
       <Box>
