@@ -7,9 +7,10 @@ import Default from "./views/Default";
 
 // Screens
 import Home from "./screens/Home";
-import Learn from "./screens/Learn";
-import Login from "./screens/Login";
 import Register from "./screens/Register";
+import Login from "./screens/Login";
+import Learn from "./screens/Learn";
+import Game1 from "./screens/Games/Game1";
 import Settings from "./screens/Settings";
 import Test from "./screens/Test";
 
@@ -23,10 +24,11 @@ function App() {
         <Header />
         <Default>
           <Routes>
-            <Route path="/" element={<Register />} />
+            <Route path="/" element={<Home />} />
+            <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
-            <Route path="home" element={<Home />} />
             <Route path="learn" element={<Learn />} />
+            <Route path="game/1" element={<Game1 />} />
             <Route path="settings" element={<Settings />} />
             <Route path="test" element={<Test />} />
           </Routes>
