@@ -1,6 +1,13 @@
 import React from "react";
 
-import { Box, Flex, Heading, IconButton, Spacer } from "@chakra-ui/react";
+import {
+  Box,
+  ButtonGroup,
+  Flex,
+  Heading,
+  IconButton,
+  Spacer,
+} from "@chakra-ui/react";
 import {
   AiOutlineQuestionCircle,
   AiOutlineSetting,
@@ -31,11 +38,12 @@ const Header = () => {
           Signle
         </Heading>
       </Box>
-
       <Spacer />
       <Box>
-        <IconButton aria-label="Profile" icon={<AiOutlineUser />} />
-        <IconButton aria-label="Settings" icon={<AiOutlineSetting />} />
+        <ButtonGroup gap="2">
+          <IconButton aria-label="Profile" icon={<AiOutlineUser />} />
+          <IconButton aria-label="Settings" icon={<AiOutlineSetting />} />
+        </ButtonGroup>
       </Box>
     </Flex>
   );
