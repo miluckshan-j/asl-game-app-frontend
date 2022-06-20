@@ -25,7 +25,7 @@ const Register = () => {
       p={3}
     >
       <Container maxW="2xl" centerContent>
-        <Box maxW="sm">
+        <Box w="85%">
           <Text fontSize="xl" paddingY={5}>
             Register
           </Text>
