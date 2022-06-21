@@ -9,6 +9,7 @@ interface WebcamProps {
     height: number;
   };
   updateInterval: number;
+  isRecording: boolean;
   onUpdate: (image: HTMLCanvasElement) => Promise<void>;
 }
 
@@ -28,7 +29,11 @@ const Webcam = (props: WebcamProps) => {
   return (
     <div
       className="webcam"
-      style={{ width: props.canvas.width, height: props.canvas.height }}
+      style={{
+        width: props.canvas.width,
+        height: props.canvas.height,
+        border: props.isRecording ? "1px solid #E53E3E" : "1px solid #718096",
+      }}
       ref={webcamDivRef}
     >
       {!isWebcamReady && (

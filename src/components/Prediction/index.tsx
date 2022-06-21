@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
+import { Text } from "@chakra-ui/react";
+
 // Components
 import Webcam from "../Webcam";
 
@@ -40,11 +42,16 @@ const Prediction = (props: PredictionProps) => {
   return (
     <>
       <Webcam
-        canvas={{ width: 250, height: 250 }}
+        canvas={{ width: 200, height: 200 }}
         updateInterval={100}
+        isRecording={props.isRecording}
         onUpdate={onUpdate}
       />
-      <p>{predictedClass}</p>
+      <Text fontSize="sm" color={"gray.500"}>
+        {props.isRecording
+          ? `Predicted: ${predictedClass}`
+          : "Press the Record button to start prediction"}
+      </Text>
     </>
   );
 };
