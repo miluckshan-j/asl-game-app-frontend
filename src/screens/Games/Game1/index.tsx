@@ -7,6 +7,7 @@ import {
   Divider,
   Flex,
   HStack,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 
@@ -32,6 +33,8 @@ const Game1 = () => {
   const [answer, setAnswer] = useState({});
   const [rowAnswer, setRowAnswer] = useState<any>({});
 
+  const toast = useToast();
+
   useEffect(() => {
     if (isRecording) {
       let startTime = new Date().getTime();
@@ -56,7 +59,8 @@ const Game1 = () => {
   }, [answer]);
 
   useEffect(() => {
-    if (tries === 3) {
+    if (tries === 5) {
+      // TODO: Trigger Modal
       console.log("Game Over!");
     }
   }, [tries]);
@@ -74,6 +78,7 @@ const Game1 = () => {
   };
 
   const checkAnswer = () => {
+    // Check if row has 5 letters
     if (presentCell === 5) {
       // TODO: Make a word generator
       const guessedWord =
@@ -94,23 +99,25 @@ const Game1 = () => {
       }
       // Word not valid
       else {
-        // alert("Enter a valid word!");
-        // Clear row
-        // Present cell = 0
-
-        // Note: Assuming word is valid. Remove later and use above logic
-        console.log("WORD NOT VALID");
-        if (guessedWord === word) {
-          setTries(3);
-        } else {
-          setTries(tries + 1);
-          setPresentCell(0);
-        }
-        // Note
+        toast({
+          title: "Word not in list",
+          status: "info",
+          position: "top",
+          duration: 1000,
+        });
+        // TODO: Clear row
+        setPresentCell(0);
       }
-    } else {
+    }
+    // Row has less than 5 letters
+    else {
       setIsCheck(false);
-      alert("Input all 5 letters!");
+      toast({
+        title: "Not enough letters",
+        status: "info",
+        position: "top",
+        duration: 1000,
+      });
     }
   };
 
