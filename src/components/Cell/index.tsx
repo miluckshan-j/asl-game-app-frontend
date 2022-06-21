@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { Box } from "@chakra-ui/react";
+
 // Model
 import { ModelAnswer } from "../../Model";
 
@@ -26,12 +28,12 @@ const Cell = (props: CellProps) => {
 
   useEffect(() => {
     if (
-      props.cellNumber === props.presentCell &&
-      props.try === props.presentTry
+      props.cellNumber <= props.presentCell &&
+      props.try <= props.presentTry
     ) {
-      setCellStyle({ border: "1px solid red" });
+      setCellStyle({ border: "1px solid #4A5568" });
     } else {
-      setCellStyle({ border: "1px solid black" });
+      setCellStyle({ border: "1px solid #718096" });
     }
   }, [props.cellNumber, props.presentCell, props.try, props.presentTry]);
 
@@ -46,12 +48,9 @@ const Cell = (props: CellProps) => {
       const predictedLetter = getHighestPrediction(props.predictions);
       if (predictedLetter === "space") {
         // TODO: Give warning message to user
-        // Set present cell
         props.setPresentCell(props.presentCell);
       } else {
-        // Set value
         setValue(predictedLetter);
-        // Skip to next cell
         props.setPresentCell(props.presentCell + 1);
       }
       props.setPredictions([]);
@@ -79,7 +78,6 @@ const Cell = (props: CellProps) => {
 
   useEffect(() => {
     if (Object.keys(props.predictedResults).length > 0) {
-      console.log("row ans", props.predictedResults);
       if (props.try < props.presentTry) {
         const guess =
           props.predictedResults[props.try.toString()][
@@ -87,13 +85,13 @@ const Cell = (props: CellProps) => {
           ].guess;
 
         if (guess === "CORRECT_SPOT") {
-          setCellStyle({ backgroundColor: "green" });
+          setCellStyle({ border: "48BB78", backgroundColor: "#48BB78" });
         } else if (guess === "WRONG_SPOT") {
-          setCellStyle({ backgroundColor: "yellow" });
+          setCellStyle({ border: "ECC94B", backgroundColor: "#ECC94B" });
         } else if (guess === "NOT_FOUND") {
-          setCellStyle({ backgroundColor: "grey" });
+          setCellStyle({ border: "718096", backgroundColor: "#718096" });
         } else {
-          setCellStyle({ backgroundColor: "white" });
+          setCellStyle({ border: "white", backgroundColor: "white" });
         }
       }
     }
@@ -110,21 +108,29 @@ const Cell = (props: CellProps) => {
   };
 
   return (
-    <div>
+    <Box
+      h={["40px", "47.5px", "55px"]}
+      w={"100%"}
+      bg={"white"}
+      border={"1px solid #718096"}
+      style={{ ...cellStyle }}
+    >
       <input
         type="text"
         name={`cell-${props.cellNumber}`}
         id={`cell-${props.cellNumber}`}
         value={value}
         style={{
-          width: "50px",
-          height: "50px",
-          backgroundColor: "white",
-          ...cellStyle,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "transparent",
+          font: "bold 20px Raleway, Helvetica, sans-serif",
+          color: "white",
+          textAlign: "center",
         }}
         disabled={true}
       />
-    </div>
+    </Box>
   );
 };
 
