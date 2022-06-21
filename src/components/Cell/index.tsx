@@ -125,7 +125,7 @@ const Cell = (props: CellProps) => {
           height: "100%",
           backgroundColor: "transparent",
           font: "bold 20px Raleway, Helvetica, sans-serif",
-          color: "white",
+          color: "#2D3748",
           textAlign: "center",
         }}
         disabled={true}
