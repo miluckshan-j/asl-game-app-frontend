@@ -44,7 +44,7 @@ const Register = () => {
     const response = await api.register(payload);
     if (response.data.code === ResponseCodes.CREATED) {
       toast({
-        title: "Registered",
+        title: "Success!",
         status: "success",
         position: "bottom-right",
         duration: 3000,
