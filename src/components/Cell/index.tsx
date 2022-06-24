@@ -19,6 +19,8 @@ interface CellProps {
   predictedResults: any;
   isRecording: boolean;
   isCheck: boolean;
+  isClear: boolean;
+  setIsClear: Function;
   answerHandler: Function;
 }
 
@@ -96,17 +98,37 @@ const Cell = (props: CellProps) => {
           ].guess;
 
         if (guess === "CORRECT_SPOT") {
-          setCellStyle({ border: "48BB78", backgroundColor: "#48BB78" });
+          setCellStyle({
+            border: "1px solid #48BB78",
+            backgroundColor: "#48BB78",
+          });
         } else if (guess === "WRONG_SPOT") {
-          setCellStyle({ border: "ECC94B", backgroundColor: "#ECC94B" });
+          setCellStyle({
+            border: "1px solid #ECC94B",
+            backgroundColor: "#ECC94B",
+          });
         } else if (guess === "NOT_FOUND") {
-          setCellStyle({ border: "718096", backgroundColor: "#718096" });
+          setCellStyle({
+            border: "1px solid #718096",
+            backgroundColor: "#718096",
+          });
         } else {
-          setCellStyle({ border: "white", backgroundColor: "white" });
+          setCellStyle({
+            border: "1px solid #718096",
+            backgroundColor: "white",
+          });
         }
       }
     }
   }, [props.presentTry, props.presentCell]);
+
+  useEffect(() => {
+    if (props.isClear && props.try === props.presentTry) {
+      setCellStyle({ border: "1px solid #718096", backgroundColor: "white" });
+      setValue("");
+      props.setIsClear(false);
+    }
+  }, [props.isClear, props.presentTry]);
 
   const getHighestPrediction = (array: string[]) => {
     const maxValue = array.reduce((previous, current, i, arr) =>

@@ -29,6 +29,7 @@ const Game1 = () => {
   const [presentCell, setPresentCell] = useState(0);
   const [word, setWord] = useState("PRIMO");
   const [isCheck, setIsCheck] = useState(false);
+  const [isClear, setIsClear] = useState(false);
   const [tries, setTries] = useState(1);
   const [answer, setAnswer] = useState({});
   const [rowAnswer, setRowAnswer] = useState<any>({});
@@ -105,7 +106,8 @@ const Game1 = () => {
           position: "top",
           duration: 1000,
         });
-        // TODO: Clear row
+        // Clear row
+        setIsClear(true);
         setPresentCell(0);
       }
     }
@@ -163,6 +165,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -179,6 +183,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -195,6 +201,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -211,6 +219,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -227,6 +237,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
           </HStack>
@@ -245,6 +257,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -261,6 +275,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -277,6 +293,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -293,6 +311,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -309,6 +329,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
           </HStack>
@@ -327,6 +349,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -343,6 +367,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -359,6 +385,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -375,6 +403,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -391,6 +421,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
           </HStack>
@@ -409,6 +441,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -425,6 +459,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -441,6 +477,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -457,6 +495,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -473,6 +513,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
           </HStack>
@@ -491,6 +533,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -507,6 +551,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -523,6 +569,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -539,6 +587,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
             <Cell
@@ -555,6 +605,8 @@ const Game1 = () => {
               predictedResults={rowAnswer}
               isRecording={isRecording}
               isCheck={isCheck}
+              isClear={isClear}
+              setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
           </HStack>
