@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Box } from "@chakra-ui/react";
+import { Box, useToast } from "@chakra-ui/react";
 
 // Model
 import { ModelAnswer } from "../../Model";
@@ -26,6 +26,8 @@ const Cell = (props: CellProps) => {
   const [cellStyle, setCellStyle] = useState({});
   const [value, setValue] = useState("");
 
+  const toast = useToast();
+
   useEffect(() => {
     if (
       props.cellNumber <= props.presentCell &&
@@ -46,8 +48,17 @@ const Cell = (props: CellProps) => {
     ) {
       // Get highest occurance
       const predictedLetter = getHighestPrediction(props.predictions);
-      if (predictedLetter === "space") {
-        // TODO: Give warning message to user
+      if (
+        predictedLetter === "space" ||
+        predictedLetter === "" ||
+        predictedLetter === "del"
+      ) {
+        toast({
+          title: "Illegal character",
+          status: "info",
+          position: "top",
+          duration: 1000,
+        });
         props.setPresentCell(props.presentCell);
       } else {
         setValue(predictedLetter);
