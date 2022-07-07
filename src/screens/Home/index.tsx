@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { MdSortByAlpha } from "react-icons/md";
 
+// Assets
 import wordle from "../../assets/icons/wordle.png";
 
 const Home = () => {
