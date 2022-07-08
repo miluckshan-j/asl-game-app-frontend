@@ -12,6 +12,7 @@ import Login from "./screens/Login";
 import Learn from "./screens/Learn";
 import Game1 from "./screens/Games/Game1";
 import Settings from "./screens/Settings";
+import Profile from "./screens/Profile";
 import Test from "./screens/Test";
 
 // Components
@@ -30,6 +31,7 @@ function App() {
             <Route path="learn" element={<Learn />} />
             <Route path="game/1" element={<Game1 />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="profile" element={<Profile />} />
             <Route path="test" element={<Test />} />
           </Routes>
         </Default>
