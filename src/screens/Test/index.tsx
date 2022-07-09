@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 // Components
 import Prediction from "../../components/Prediction";
 import Cell from "../../components/Cell";
+import Result from "../../components/Result";
 
 // Model
 import { ModelAnswer } from "../../Model";
 
 // Utils
 import { VALID_GUESSES } from "../../utils/validGuesses";
+import sampleAnswer from "../../utils/sampleAnswer.json";
 
 // TODO: Remove screen after testing
 const Test = () => {
@@ -107,247 +109,250 @@ const Test = () => {
 
   return (
     <>
-      <Prediction
-        isRecording={isRecording}
-        predictedLetter={predictedLetter}
-        setPredictedLetter={setPredictedLetter}
-      />
-      <button onClick={() => setIsRecording(true)}>Press</button>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          margin: "25px 25px",
-          padding: "20px",
-          border: tries === 1 ? "red solid 1px" : "black solid 1px",
-        }}
-      >
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={1}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={0}
-          cellLetter="P"
-          // predictedLetter="P"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={1}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={1}
-          cellLetter="R"
-          // predictedLetter="R"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={1}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={2}
-          cellLetter="I"
-          // predictedLetter="I"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={1}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={3}
-          cellLetter="M"
-          // predictedLetter="M"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={1}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={4}
-          cellLetter="O"
-          // predictedLetter="O"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          margin: "25px 25px",
-          padding: "20px",
-
-          border: tries === 2 ? "red solid 1px" : "black solid 1px",
-        }}
-      >
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={2}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={0}
-          cellLetter="P"
-          // predictedLetter="P"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={2}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={1}
-          cellLetter="R"
-          // predictedLetter="R"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={2}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={2}
-          cellLetter="I"
-          // predictedLetter="I"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={2}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={3}
-          cellLetter="M"
-          // predictedLetter="M"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-        <Cell
-          presentCell={presentCell}
-          setPresentCell={setPresentCell}
-          try={2}
-          setTry={setTries}
-          presentTry={tries}
-          cellNumber={4}
-          cellLetter="O"
-          // predictedLetter="O"
-          predictions={predictions}
-          setPredictions={setPredictions}
-          word={word}
-          predictedResults={rowAnswer}
-          isRecording={isRecording}
-          isCheck={isCheck}
-          isClear={isClear}
-          setIsClear={setIsClear}
-          answerHandler={answerHandler}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          margin: "25px 25px",
-          padding: "20px",
-        }}
-      >
-        <div>
-          <p>Tries: {tries}/5</p>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            margin: "25px 0px",
-          }}
-        >
-          <button>Quit</button>
-          <button>Clear</button>
-          <button onClick={checkAnswer}>Check</button>
-        </div>
-      </div>
+      <Result result={sampleAnswer} />
     </>
+    //   <>
+    //     <Prediction
+    //       isRecording={isRecording}
+    //       predictedLetter={predictedLetter}
+    //       setPredictedLetter={setPredictedLetter}
+    //     />
+    //     <button onClick={() => setIsRecording(true)}>Press</button>
+    //     <div
+    //       style={{
+    //         display: "flex",
+    //         justifyContent: "space-evenly",
+    //         margin: "25px 25px",
+    //         padding: "20px",
+    //         border: tries === 1 ? "red solid 1px" : "black solid 1px",
+    //       }}
+    //     >
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={1}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={0}
+    //         cellLetter="P"
+    //         // predictedLetter="P"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={1}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={1}
+    //         cellLetter="R"
+    //         // predictedLetter="R"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={1}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={2}
+    //         cellLetter="I"
+    //         // predictedLetter="I"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={1}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={3}
+    //         cellLetter="M"
+    //         // predictedLetter="M"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={1}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={4}
+    //         cellLetter="O"
+    //         // predictedLetter="O"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //     </div>
+    //     <div
+    //       style={{
+    //         display: "flex",
+    //         justifyContent: "space-evenly",
+    //         margin: "25px 25px",
+    //         padding: "20px",
+
+    //         border: tries === 2 ? "red solid 1px" : "black solid 1px",
+    //       }}
+    //     >
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={2}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={0}
+    //         cellLetter="P"
+    //         // predictedLetter="P"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={2}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={1}
+    //         cellLetter="R"
+    //         // predictedLetter="R"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={2}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={2}
+    //         cellLetter="I"
+    //         // predictedLetter="I"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={2}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={3}
+    //         cellLetter="M"
+    //         // predictedLetter="M"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //       <Cell
+    //         presentCell={presentCell}
+    //         setPresentCell={setPresentCell}
+    //         try={2}
+    //         setTry={setTries}
+    //         presentTry={tries}
+    //         cellNumber={4}
+    //         cellLetter="O"
+    //         // predictedLetter="O"
+    //         predictions={predictions}
+    //         setPredictions={setPredictions}
+    //         word={word}
+    //         predictedResults={rowAnswer}
+    //         isRecording={isRecording}
+    //         isCheck={isCheck}
+    //         isClear={isClear}
+    //         setIsClear={setIsClear}
+    //         answerHandler={answerHandler}
+    //       />
+    //     </div>
+    //     <div
+    //       style={{
+    //         display: "flex",
+    //         justifyContent: "space-evenly",
+    //         margin: "25px 25px",
+    //         padding: "20px",
+    //       }}
+    //     >
+    //       <div>
+    //         <p>Tries: {tries}/5</p>
+    //       </div>
+    //       <div
+    //         style={{
+    //           display: "flex",
+    //           justifyContent: "space-evenly",
+    //           margin: "25px 0px",
+    //         }}
+    //       >
+    //         <button>Quit</button>
+    //         <button>Clear</button>
+    //         <button onClick={checkAnswer}>Check</button>
+    //       </div>
+    //     </div>
+    //   </>
   );
 };
 

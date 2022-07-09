@@ -1,0 +1,46 @@
+{
+  "1": {
+    "0": {
+      "value": "Z",
+      "guess": "NOT_FOUND"
+    },
+    "1": {
+      "value": "O",
+      "guess": "WRONG_SPOT"
+    },
+    "2": {
+      "value": "B",
+      "guess": "NOT_FOUND"
+    },
+    "3": {
+      "value": "B",
+      "guess": "NOT_FOUND"
+    },
+    "4": {
+      "value": "Z",
+      "guess": "CORRECT_SPOT"
+    }
+  },
+  "2": {
+    "0": {
+      "value": "Z",
+      "guess": "WRONG_SPOT"
+    },
+    "1": {
+      "value": "O",
+      "guess": "WRONG_SPOT"
+    },
+    "2": {
+      "value": "B",
+      "guess": "NOT_FOUND"
+    },
+    "3": {
+      "value": "B",
+      "guess": "NOT_FOUND"
+    },
+    "4": {
+      "value": "Z",
+      "guess": "NOT_FOUND"
+    }
+  }
+}
