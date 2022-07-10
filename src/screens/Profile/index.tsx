@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Box,
@@ -10,12 +10,39 @@ import {
   Text,
   VStack,
   Image,
+  useToast,
 } from "@chakra-ui/react";
+
+// Utils
+import * as api from "../../utils/api";
+import { ResponseCodes } from "../../utils/responseCodes";
 
 // Assets
 import wordle from "../../assets/icons/wordle.png";
 
 const Profile = () => {
+  const [userDetails, setUserDetails] = useState<any>({});
+
+  const toast = useToast();
+
+  const retrieveProfile = async () => {
+    const response = await api.retrieveProfile();
+    if (response.data.code === ResponseCodes.OK) {
+      setUserDetails(response.data.data);
+    } else {
+      toast({
+        title: response.data.message,
+        status: "error",
+        position: "bottom-right",
+        duration: 3000,
+      });
+    }
+  };
+
+  useEffect(() => {
+    retrieveProfile();
+  }, []);
+
   return (
     <Flex
       align="center"
@@ -32,13 +59,13 @@ const Profile = () => {
           <VStack>
             <Divider marginTop={5} />
             <Text as="b" fontSize="2xl" paddingBottom={0} align={"left"}>
-              Miluckshan
+              {userDetails?.username || "N/A"}
             </Text>
             <Divider marginY={5} />
             <HStack w="100%" divider={<StackDivider />}>
               <VStack w="100%" spacing={0} paddingY={3} alignItems={"center"}>
                 <Text fontSize="xl" paddingBottom={0} align={"left"}>
-                  1
+                  {userDetails?.gamesPlayed?.length || "N/A"}
                 </Text>
                 <Text
                   fontSize="sm"
@@ -51,7 +78,7 @@ const Profile = () => {
               </VStack>
               <VStack w="100%" spacing={0} paddingY={3} alignItems={"center"}>
                 <Text fontSize="xl" paddingBottom={0} align={"left"}>
-                  100
+                  {userDetails?.results?.length || "N/A"}
                 </Text>
                 <Text
                   fontSize="sm"
@@ -66,7 +93,10 @@ const Profile = () => {
             <Divider marginY={5} />
             <VStack w="100%" spacing={0} paddingY={3} alignItems={"start"}>
               <Text fontSize="lg" paddingBottom={0} align={"left"}>
-                Badges (3)
+                Badges{" "}
+                {userDetails?.badges?.length > 0
+                  ? `(${userDetails?.badges?.length})`
+                  : ""}
               </Text>
               <Text
                 fontSize="sm"
@@ -80,7 +110,10 @@ const Profile = () => {
             <Divider marginY={5} />
             <VStack w="100%" spacing={0} paddingY={3} alignItems={"start"}>
               <Text fontSize="lg" paddingBottom={0} align={"left"}>
-                Games (1)
+                Games{" "}
+                {userDetails?.gamesPlayed?.length > 0
+                  ? `(${userDetails?.gamesPlayed?.length})`
+                  : ""}
               </Text>
               <Image paddingTop={4} src={wordle} w="25%" />
             </VStack>

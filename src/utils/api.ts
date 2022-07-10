@@ -46,3 +46,13 @@ export const addGameResult = async (payload: object) => {
     return errorObject;
   }
 };
+
+export const retrieveProfile = async () => {
+  try {
+    const response = await axiosClient.get("/users/me");
+    return response;
+  } catch (error) {
+    console.error(error);
+    return errorObject;
+  }
+};
