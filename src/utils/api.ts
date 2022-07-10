@@ -7,7 +7,7 @@ const axiosClient = axios.create();
 axiosClient.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 axiosClient.defaults.headers.common["Content-Type"] = "application/json";
 axiosClient.defaults.headers.common["Authorization"] =
-  localStorage.getItem("asl_token") || "";
+  "Bearer " + localStorage.getItem("asl_token") || "Bearer ";
 axiosClient.defaults.timeout = 10000;
 
 const errorObject = {
@@ -30,6 +30,16 @@ export const register = async (payload: object) => {
 export const login = async (payload: object) => {
   try {
     const response = await axiosClient.post("/login", payload);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return errorObject;
+  }
+};
+
+export const addGameResult = async (payload: object) => {
+  try {
+    const response = await axiosClient.post("/users/me/results", payload);
     return response;
   } catch (error) {
     console.error(error);

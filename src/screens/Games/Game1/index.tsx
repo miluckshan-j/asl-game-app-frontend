@@ -7,20 +7,36 @@ import {
   Divider,
   Flex,
   HStack,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+  Text,
   useToast,
   VStack,
+  Link,
 } from "@chakra-ui/react";
 
 // Components
 import Prediction from "../../../components/Prediction";
-// import CellRow from "../../../components/CellRow";
 import Cell from "../../../components/Cell";
+import Result from "../../../components/Result";
 
 // Model
 import { ModelAnswer } from "../../../Model";
 
 // Utils
 import { VALID_GUESSES } from "../../../utils/validGuesses";
+import * as api from "../../../utils/api";
+import { ResponseCodes } from "../../../utils/responseCodes";
+
+const gameDetails = {
+  gameId: 1,
+  gameName: "Wordle",
+};
 
 const Game1 = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -33,8 +49,10 @@ const Game1 = () => {
   const [tries, setTries] = useState(1);
   const [answer, setAnswer] = useState({});
   const [rowAnswer, setRowAnswer] = useState<any>({});
+  const [addGameResponse, setAddGameResponse] = useState<any>({});
 
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     if (isRecording) {
@@ -59,10 +77,30 @@ const Game1 = () => {
     setRowAnswer((rowAns: any) => ({ ...rowAns, [tries.toString()]: answer }));
   }, [answer]);
 
+  const addGameResult = async () => {
+    const response = await api.addGameResult({
+      ...gameDetails,
+      results: { ...rowAnswer },
+    });
+    if (
+      response.data.code === ResponseCodes.UPDATED ||
+      response.data.code === ResponseCodes.OK
+    ) {
+      setAddGameResponse(response.data);
+      onOpen();
+    } else {
+      toast({
+        title: "Something unexpected happened!",
+        status: "error",
+        position: "bottom-right",
+        duration: 3000,
+      });
+    }
+  };
+
   useEffect(() => {
     if (tries === 5) {
-      // TODO: Trigger Modal
-      console.log("Game Over!");
+      addGameResult();
     }
   }, [tries]);
 
@@ -92,7 +130,7 @@ const Game1 = () => {
       if (VALID_GUESSES.includes(guessedWord)) {
         // Check guess word is the correct word
         if (guessedWord === word) {
-          setTries(3);
+          setTries(5);
         } else {
           setTries(tries + 1);
           setPresentCell(0);
@@ -131,6 +169,71 @@ const Game1 = () => {
       bg="white.500"
       p={3}
     >
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+        size={"lg"}
+      >
+        <ModalOverlay
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px) hue-rotate(90deg)"
+        />
+        <ModalContent>
+          <ModalHeader>
+            {addGameResponse.code === ResponseCodes.OK
+              ? "Congratulations!"
+              : "Game Over"}
+          </ModalHeader>
+          <Divider />
+          <ModalBody>
+            {addGameResponse.code === ResponseCodes.OK ? (
+              <Text
+                fontSize="md"
+                color={"blackAlpha.900"}
+                paddingBottom={3}
+                align={"left"}
+              >
+                You have received a {addGameResponse.message}! View all your
+                badges from the{" "}
+                <Link color="blue.500" href="#">
+                  Profile
+                </Link>{" "}
+                page
+              </Text>
+            ) : null}
+            <Box paddingX={"10"}>
+              <Text fontSize="md" color={"gray.500"} align={"center"}>
+                Correct Word:
+              </Text>
+              <Text
+                fontSize="lg"
+                color={"blackAlpha.900"}
+                paddingBottom={3}
+                align={"center"}
+              >
+                {word}
+              </Text>
+              <Result result={rowAnswer} />
+            </Box>
+          </ModalBody>
+          <Divider />
+          <ModalFooter>
+            <Text fontSize="sm" color={"gray.500"} align={"left"}>
+              This is a project done to evaluate the benefits of gamifying
+              learning ASL. Please{" "}
+              <Link color="blue.500" href="#">
+                Provide Feedback
+              </Link>
+            </Text>
+            <Button colorScheme="gray" onClick={onClose} mr={3}>
+              Close
+            </Button>
+            <Button colorScheme="blue">Share</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Container maxW="2xl" centerContent>
         <Box w="85%">
           <VStack>
@@ -610,13 +713,12 @@ const Game1 = () => {
               answerHandler={answerHandler}
             />
           </HStack>
-          {/* TODO: Refactor Code later
-          <CellRow />
-          <CellRow />
-          <CellRow />
-          <CellRow />
-          <CellRow /> */}
-          <Button colorScheme="blue" onClick={checkAnswer}>
+          {/* TODO: Refactor Code later using <CellRow /> */}
+          <Button
+            colorScheme="blue"
+            onClick={checkAnswer}
+            disabled={tries === 5}
+          >
             Check
           </Button>
         </Box>
