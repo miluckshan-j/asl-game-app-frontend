@@ -91,7 +91,7 @@ const Login = () => {
           <Divider paddingY={3} />
           <Text fontSize="sm" paddingTop={3}>
             Not a user?{" "}
-            <Link as={RouterLink} to="/register">
+            <Link as={RouterLink} to="/register" color="blue.500">
               Register
             </Link>
           </Text>

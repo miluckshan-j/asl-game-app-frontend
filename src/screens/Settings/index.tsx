@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -14,6 +15,8 @@ import {
 import { AiOutlineRight } from "react-icons/ai";
 
 const Settings = () => {
+  const navigate = useNavigate();
+
   return (
     <Flex
       align="center"
@@ -72,6 +75,9 @@ const Settings = () => {
                 aria-label="Edit profile"
                 icon={<AiOutlineRight />}
                 backgroundColor="white"
+                onClick={() => {
+                  navigate("profile");
+                }}
               />
             </HStack>
             <Divider marginY={5} />

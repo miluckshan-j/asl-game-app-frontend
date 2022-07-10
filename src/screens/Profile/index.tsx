@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 import {
   Box,
@@ -11,6 +12,8 @@ import {
   VStack,
   Image,
   useToast,
+  LinkBox,
+  LinkOverlay,
 } from "@chakra-ui/react";
 
 // Utils
@@ -115,7 +118,11 @@ const Profile = () => {
                   ? `(${userDetails?.gamesPlayed?.length})`
                   : ""}
               </Text>
-              <Image paddingTop={4} src={wordle} w="25%" />
+              <LinkBox>
+                <LinkOverlay as={RouterLink} to="/game/1">
+                  <Image paddingTop={4} src={wordle} w="25%" />
+                </LinkOverlay>
+              </LinkBox>
             </VStack>
           </VStack>
         </Box>

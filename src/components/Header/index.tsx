@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -16,6 +17,8 @@ import {
 } from "react-icons/ai";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <Flex
       as="nav"
@@ -29,7 +32,13 @@ const Header = () => {
     >
       <Box>
         <ButtonGroup gap="2">
-          <IconButton aria-label="Home" icon={<AiOutlineHome />} />
+          <IconButton
+            aria-label="Home"
+            icon={<AiOutlineHome />}
+            onClick={() => {
+              navigate("/");
+            }}
+          />
           <IconButton
             aria-label="How to play"
             icon={<AiOutlineQuestionCircle />}
@@ -45,8 +54,20 @@ const Header = () => {
       <Spacer />
       <Box>
         <ButtonGroup gap="2">
-          <IconButton aria-label="Profile" icon={<AiOutlineUser />} />
-          <IconButton aria-label="Settings" icon={<AiOutlineSetting />} />
+          <IconButton
+            aria-label="Profile"
+            icon={<AiOutlineUser />}
+            onClick={() => {
+              navigate("profile");
+            }}
+          />
+          <IconButton
+            aria-label="Settings"
+            icon={<AiOutlineSetting />}
+            onClick={() => {
+              navigate("settings");
+            }}
+          />
         </ButtonGroup>
       </Box>
     </Flex>

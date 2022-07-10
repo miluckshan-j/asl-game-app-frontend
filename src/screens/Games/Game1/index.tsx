@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 import {
   Box,
@@ -197,7 +198,7 @@ const Game1 = () => {
               >
                 You have received a {addGameResponse.message}! View all your
                 badges from the{" "}
-                <Link color="blue.500" href="#">
+                <Link as={RouterLink} to="/profile" color="blue.500">
                   Profile
                 </Link>{" "}
                 page
@@ -223,7 +224,7 @@ const Game1 = () => {
             <Text fontSize="sm" color={"gray.500"} align={"left"}>
               This is a project done to evaluate the benefits of gamifying
               learning ASL. Please{" "}
-              <Link color="blue.500" href="#">
+              <Link href="#" color="blue.500" isExternal>
                 Provide Feedback
               </Link>
             </Text>

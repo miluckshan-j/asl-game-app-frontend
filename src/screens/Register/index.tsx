@@ -101,7 +101,7 @@ const Register = () => {
           <Divider paddingY={3} />
           <Text fontSize="sm" paddingTop={3}>
             Already a user?{" "}
-            <Link as={RouterLink} to="/login">
+            <Link as={RouterLink} to="/login" color="blue.500">
               Login
             </Link>
           </Text>

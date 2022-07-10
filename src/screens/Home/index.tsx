@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 import {
   Box,
@@ -10,6 +11,8 @@ import {
   Image,
   VStack,
   Icon,
+  LinkBox,
+  LinkOverlay,
 } from "@chakra-ui/react";
 import { MdSortByAlpha } from "react-icons/md";
 
@@ -42,17 +45,32 @@ const Home = () => {
             Learn American Sign Language and get familiar with Signle
           </Text>
           <Grid templateColumns="repeat(2, 1fr)" gap={6} paddingBottom={4}>
-            <GridItem w="100%" h="170px" padding={3} bg="gray.100" rounded="xl">
-              <VStack>
-                <Icon as={MdSortByAlpha} w={10} h={10} paddingTop={3} />
-                <Text as={"b"} fontSize="sm" color={"black.300"} align={"left"}>
-                  Alphabets
-                </Text>
-                <Text fontSize="sm" color={"black.300"} align={"left"}>
-                  Practice A-Z using ASL
-                </Text>
-              </VStack>
-            </GridItem>
+            <LinkBox>
+              <GridItem
+                w="100%"
+                h="170px"
+                padding={3}
+                bg="gray.100"
+                rounded="xl"
+              >
+                <LinkOverlay as={RouterLink} to="/learn">
+                  <VStack>
+                    <Icon as={MdSortByAlpha} w={10} h={10} paddingTop={3} />
+                    <Text
+                      as={"b"}
+                      fontSize="sm"
+                      color={"black.300"}
+                      align={"left"}
+                    >
+                      Alphabets
+                    </Text>
+                    <Text fontSize="sm" color={"black.300"} align={"left"}>
+                      Practice A-Z using ASL
+                    </Text>
+                  </VStack>
+                </LinkOverlay>
+              </GridItem>
+            </LinkBox>
           </Grid>
           <Text fontSize="lg" paddingBottom={3} align={"left"}>
             Games
@@ -67,17 +85,32 @@ const Home = () => {
             American Sign Language
           </Text>
           <Grid templateColumns="repeat(2, 1fr)" gap={6} paddingBottom={4}>
-            <GridItem w="100%" h="170px" padding={3} bg="gray.100" rounded="xl">
-              <VStack>
-                <Image paddingTop={4} src={wordle} w="25%" />
-                <Text as={"b"} fontSize="sm" color={"black.300"} align={"left"}>
-                  Letter Match
-                </Text>
-                <Text fontSize="sm" color={"black.300"} align={"left"}>
-                  Guess word in 6 tries
-                </Text>
-              </VStack>
-            </GridItem>
+            <LinkBox>
+              <GridItem
+                w="100%"
+                h="170px"
+                padding={3}
+                bg="gray.100"
+                rounded="xl"
+              >
+                <LinkOverlay as={RouterLink} to="/game/1">
+                  <VStack>
+                    <Image paddingTop={4} src={wordle} w="25%" />
+                    <Text
+                      as={"b"}
+                      fontSize="sm"
+                      color={"black.300"}
+                      align={"left"}
+                    >
+                      Wordle
+                    </Text>
+                    <Text fontSize="sm" color={"black.300"} align={"left"}>
+                      Guess word in 6 tries
+                    </Text>
+                  </VStack>
+                </LinkOverlay>
+              </GridItem>
+            </LinkBox>
             <GridItem w="100%" h="170px" padding={3} bg="gray.100" rounded="xl">
               <VStack>
                 <Text
