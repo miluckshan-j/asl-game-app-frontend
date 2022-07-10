@@ -46,10 +46,7 @@ const Login = () => {
         duration: 3000,
       });
       // Add to token local storage
-      localStorage.setItem(
-        "asl_token",
-        JSON.stringify(response.data.data.token)
-      );
+      localStorage.setItem("asl_token", response.data.data.token);
       navigate("/");
     } else {
       toast({
