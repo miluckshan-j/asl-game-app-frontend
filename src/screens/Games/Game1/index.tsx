@@ -127,27 +127,36 @@ const Game1 = () => {
         rowAnswer[tries.toString()]["2"].value +
         rowAnswer[tries.toString()]["3"].value +
         rowAnswer[tries.toString()]["4"].value;
-      // Check if valid word
-      if (VALID_GUESSES.includes(guessedWord)) {
-        // Check guess word is the correct word
-        if (guessedWord === word) {
-          setTries(5);
-        } else {
-          setTries(tries + 1);
+      // Check easy mode
+      const mode = localStorage.getItem("asl_mode");
+      if (mode === "easy") {
+        setTries(tries + 1);
+        setPresentCell(0);
+      }
+      // Hard mode
+      else {
+        // Check if valid word
+        if (VALID_GUESSES.includes(guessedWord)) {
+          // Check guess word is the correct word
+          if (guessedWord === word) {
+            setTries(5);
+          } else {
+            setTries(tries + 1);
+            setPresentCell(0);
+          }
+        }
+        // Word not valid
+        else {
+          toast({
+            title: "Word not in list",
+            status: "info",
+            position: "top",
+            duration: 1000,
+          });
+          // Clear row
+          setIsClear(true);
           setPresentCell(0);
         }
-      }
-      // Word not valid
-      else {
-        toast({
-          title: "Word not in list",
-          status: "info",
-          position: "top",
-          duration: 1000,
-        });
-        // Clear row
-        setIsClear(true);
-        setPresentCell(0);
       }
     }
     // Row has less than 5 letters

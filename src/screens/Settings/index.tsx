@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -15,7 +15,21 @@ import {
 import { AiOutlineRight } from "react-icons/ai";
 
 const Settings = () => {
+  const [modeIsChecked, setModeIsChecked] = useState(
+    localStorage.getItem("asl_mode") === "easy" ? true : false
+  );
+
   const navigate = useNavigate();
+
+  const modeHandler = (event: any) => {
+    if (event.target.checked) {
+      setModeIsChecked(true);
+      localStorage.setItem("asl_mode", "easy");
+    } else {
+      setModeIsChecked(false);
+      localStorage.setItem("asl_mode", "hard");
+    }
+  };
 
   return (
     <Flex
@@ -42,10 +56,14 @@ const Settings = () => {
                   paddingBottom={3}
                   align={"left"}
                 >
-                  Word check will be disabled
+                  Word validity check will be disabled
                 </Text>
               </VStack>
-              <Switch size="md" />
+              <Switch
+                size="md"
+                isChecked={modeIsChecked}
+                onChange={modeHandler}
+              />
             </HStack>
             <Divider marginY={5} />
             <HStack w="100%">
