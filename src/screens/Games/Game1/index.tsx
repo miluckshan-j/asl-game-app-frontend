@@ -108,7 +108,7 @@ const Game1 = () => {
   };
 
   useEffect(() => {
-    if (tries === 5) {
+    if (tries === 6) {
       if (isAuthenticated) {
         addGameResult();
       } else {
@@ -151,7 +151,7 @@ const Game1 = () => {
         if (VALID_GUESSES.includes(guessedWord)) {
           // Check guess word is the correct word
           if (guessedWord === word) {
-            setTries(5);
+            setTries(6);
           } else {
             setTries(tries + 1);
             setPresentCell(0);
@@ -270,6 +270,7 @@ const Game1 = () => {
               isLoading={isRecording}
               loadingText="Recording"
               onClick={() => setIsRecording(true)}
+              disabled={presentCell === 5}
             >
               Record
             </Button>
@@ -739,7 +740,7 @@ const Game1 = () => {
           <Button
             colorScheme="blue"
             onClick={checkAnswer}
-            disabled={tries === 5}
+            disabled={tries === 6 || presentCell !== 5}
           >
             Check
           </Button>
