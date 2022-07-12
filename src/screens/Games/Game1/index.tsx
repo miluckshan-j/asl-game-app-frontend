@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
   Box,
@@ -20,6 +21,9 @@ import {
   VStack,
   Link,
 } from "@chakra-ui/react";
+
+// Redux
+import type { RootState } from "../../../redux/store";
 
 // Components
 import Prediction from "../../../components/Prediction";
@@ -51,6 +55,10 @@ const Game1 = () => {
   const [answer, setAnswer] = useState({});
   const [rowAnswer, setRowAnswer] = useState<any>({});
   const [addGameResponse, setAddGameResponse] = useState<any>({});
+
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.user.isAuthenticated
+  );
 
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -101,7 +109,11 @@ const Game1 = () => {
 
   useEffect(() => {
     if (tries === 5) {
-      addGameResult();
+      if (isAuthenticated) {
+        addGameResult();
+      } else {
+        onOpen();
+      }
     }
   }, [tries]);
 
