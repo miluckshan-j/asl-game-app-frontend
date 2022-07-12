@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+// Redux
+import { setAuthenticatedStatus } from "../../redux/userSlice";
 
 import {
   Box,
@@ -24,6 +28,8 @@ const Login = () => {
   const [payload, setPayload] = useState({});
   const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const toast = useToast();
@@ -47,6 +53,7 @@ const Login = () => {
       });
       // Add to token local storage
       localStorage.setItem("asl_token", response.data.data.token);
+      dispatch(setAuthenticatedStatus(true));
       navigate("/");
     } else {
       toast({
