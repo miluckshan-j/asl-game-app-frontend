@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 import {
   Box,
@@ -10,6 +11,14 @@ import {
   useToast,
   VStack,
   Image,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Link,
 } from "@chakra-ui/react";
 
 // Components
@@ -61,6 +70,7 @@ const Learn = () => {
   const [presentLetter, setPresentLetter] = useState(0);
 
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     if (isRecording) {
@@ -87,7 +97,7 @@ const Learn = () => {
       const predicted = getHighestPrediction(predictions);
       if (letters[presentLetter] === predicted) {
         toast({
-          title: "Excellent!",
+          title: "Well Done!",
           status: "success",
           position: "top",
           duration: 2000,
@@ -109,9 +119,15 @@ const Learn = () => {
 
   useEffect(() => {
     if (presentLetter > 25) {
-      console.log("Well Done!");
+      onOpen();
+      console.log("Completed");
     }
   }, [presentLetter]);
+
+  const retry = () => {
+    setPresentLetter(0);
+    onClose();
+  };
 
   return (
     <Flex
@@ -121,6 +137,52 @@ const Learn = () => {
       bg="white.500"
       p={3}
     >
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+        size={"lg"}
+      >
+        <ModalOverlay
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px) hue-rotate(90deg)"
+        />
+        <ModalContent>
+          <ModalHeader>Excellent!</ModalHeader>
+          <Divider />
+          <ModalBody>
+            <Text
+              fontSize="md"
+              color={"blackAlpha.900"}
+              paddingBottom={3}
+              align={"left"}
+            >
+              You are all set. Try out some spelling games by visiting the{" "}
+              <Link as={RouterLink} to="/" color="blue.500">
+                Home
+              </Link>{" "}
+              page
+            </Text>
+          </ModalBody>
+          <Divider />
+          <ModalFooter>
+            <Text fontSize="sm" color={"gray.500"} align={"left"}>
+              This is a project done to evaluate the benefits of gamifying
+              learning ASL. Please{" "}
+              <Link href="#" color="blue.500" isExternal>
+                Provide Feedback
+              </Link>
+            </Text>
+            <Button colorScheme="gray" onClick={onClose} mr={3}>
+              Close
+            </Button>
+            <Button colorScheme="blue" onClick={retry}>
+              Retry
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Container maxW="2xl" centerContent>
         <Box w="85%">
           <Text fontSize="xl" paddingY={5}>
