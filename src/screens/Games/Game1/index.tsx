@@ -37,6 +37,7 @@ import { ModelAnswer } from "../../../Model";
 import { VALID_GUESSES } from "../../../utils/validGuesses";
 import * as api from "../../../utils/api";
 import { ResponseCodes } from "../../../utils/responseCodes";
+import { generateResultText } from "../../../utils/results";
 
 const gameDetails = {
   gameId: 1,
@@ -183,6 +184,17 @@ const Game1 = () => {
     }
   };
 
+  const copyResult = () => {
+    const text = generateResultText(rowAnswer);
+    navigator.clipboard.writeText(text);
+    toast({
+      title: "Result copied to clipboard!",
+      status: "info",
+      position: "top",
+      duration: 1000,
+    });
+  };
+
   return (
     <Flex
       align="center"
@@ -252,7 +264,9 @@ const Game1 = () => {
             <Button colorScheme="gray" onClick={onClose} mr={3}>
               Close
             </Button>
-            <Button colorScheme="blue">Share</Button>
+            <Button colorScheme="blue" onClick={copyResult}>
+              Share
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
