@@ -20,6 +20,8 @@ import {
   useToast,
   VStack,
   Link,
+  ModalCloseButton,
+  Center,
 } from "@chakra-ui/react";
 
 // Redux
@@ -63,6 +65,15 @@ const Game1 = () => {
 
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenHowToPlay,
+    onOpen: onOpenHowToPlay,
+    onClose: onCloseHowToPlay,
+  } = useDisclosure();
+
+  useEffect(() => {
+    onOpenHowToPlay();
+  }, []);
 
   useEffect(() => {
     if (isRecording) {
@@ -203,6 +214,317 @@ const Game1 = () => {
       bg="white.500"
       p={3}
     >
+      {/* How To Play Modal */}
+      <Modal
+        isOpen={isOpenHowToPlay}
+        onClose={onCloseHowToPlay}
+        isCentered
+        size={"lg"}
+        scrollBehavior={"inside"}
+      >
+        <ModalOverlay
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px) hue-rotate(90deg)"
+        />
+        <ModalContent>
+          <ModalHeader>
+            How To Play
+            <ModalCloseButton marginTop={"1.5"} />
+          </ModalHeader>
+          <Divider />
+          <ModalBody>
+            <Text
+              fontSize="lg"
+              color={"blackAlpha.900"}
+              paddingBottom={3}
+              align={"center"}
+            >
+              RULES
+            </Text>
+            <Text
+              fontSize="md"
+              color={"blackAlpha.900"}
+              paddingBottom={2}
+              align={"left"}
+            >
+              Guess the{" "}
+              <Text
+                as={"b"}
+                fontSize="md"
+                color={"blackAlpha.900"}
+                align={"left"}
+              >
+                Wordle
+              </Text>{" "}
+              in five tries
+            </Text>
+            <Text
+              fontSize="md"
+              color={"blackAlpha.900"}
+              paddingBottom={2}
+              align={"left"}
+            >
+              Each guess must be a valid five-letter word. You can disable word
+              validity by switching into easy mode in the{" "}
+              <Link as={RouterLink} to="/settings" color="blue.500">
+                Settings
+              </Link>{" "}
+              page
+            </Text>
+            <Text
+              fontSize="md"
+              color={"blackAlpha.900"}
+              paddingBottom={2}
+              align={"left"}
+            >
+              Press the Record button to record a five second clip to detect
+              hand signs. The most accurate detection will be input in the cell
+            </Text>
+            <Text
+              fontSize="md"
+              color={"blackAlpha.900"}
+              paddingBottom={2}
+              align={"left"}
+            >
+              Press the Check button after every guess to check guess word (or
+              to move to next guess in easy mode)
+            </Text>
+            <Text
+              fontSize="md"
+              color={"blackAlpha.900"}
+              paddingBottom={2}
+              align={"left"}
+            >
+              After every guess, the colors of the cell will change to show how
+              close your guess word was to the correct word
+            </Text>
+            <Divider paddingY={3} />
+            <Text
+              fontSize="lg"
+              color={"blackAlpha.900"}
+              paddingY={3}
+              align={"center"}
+            >
+              EXAMPLES
+            </Text>
+            <Text
+              fontSize="md"
+              color={"blackAlpha.900"}
+              paddingBottom={2}
+              align={"left"}
+            >
+              The letter{" "}
+              <Text
+                as={"b"}
+                fontSize="md"
+                color={"blackAlpha.900"}
+                align={"left"}
+              >
+                W
+              </Text>{" "}
+              is in the word and in the correct spot. Hence it is shown in green
+            </Text>
+            <HStack w={"100%"} paddingBottom={2} paddingX={"20"}>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"#48BB78"}
+                border={"1px solid #48BB78"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  W
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  E
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  A
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  R
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  Y
+                </Text>
+              </Center>
+            </HStack>
+            <Text
+              fontSize="md"
+              color={"blackAlpha.900"}
+              paddingBottom={2}
+              align={"left"}
+            >
+              The letter{" "}
+              <Text
+                as={"b"}
+                fontSize="md"
+                color={"blackAlpha.900"}
+                align={"left"}
+              >
+                I
+              </Text>{" "}
+              is in the word but in the wrong spot. Hence it is shown in yellow
+            </Text>
+            <HStack w={"100%"} paddingBottom={2} paddingX={"20"}>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  P
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"#ECC94B"}
+                border={"1px solid #ECC94B"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  I
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  L
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  L
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  S
+                </Text>
+              </Center>
+            </HStack>
+            <Text
+              fontSize="md"
+              color={"blackAlpha.900"}
+              paddingBottom={2}
+              align={"left"}
+            >
+              The letter{" "}
+              <Text
+                as={"b"}
+                fontSize="md"
+                color={"blackAlpha.900"}
+                align={"left"}
+              >
+                U
+              </Text>{" "}
+              is not in the word in any spots. Hence it is shown in grey
+            </Text>
+            <HStack w={"100%"} paddingBottom={2} paddingX={"20"}>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  V
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  A
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  G
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"#718096"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  U
+                </Text>
+              </Center>
+              <Center
+                h={["35px", "55px", "55px"]}
+                w={"100%"}
+                bg={"white"}
+                border={"1px solid #718096"}
+              >
+                <Text fontSize="lg" color={"blackAlpha.900"} align={"center"}>
+                  E
+                </Text>
+              </Center>
+            </HStack>
+          </ModalBody>
+          <Divider />
+          <ModalFooter>
+            <Button colorScheme="blue" onClick={onCloseHowToPlay}>
+              Let's Play!
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      {/* Result Modal */}
       <Modal
         closeOnOverlayClick={false}
         isOpen={isOpen}
@@ -754,7 +1076,7 @@ const Game1 = () => {
           <Button
             colorScheme="blue"
             onClick={checkAnswer}
-            disabled={tries === 6 || presentCell !== 5}
+            disabled={tries === 6}
           >
             Check
           </Button>
