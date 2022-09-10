@@ -7,41 +7,10 @@ export interface ModelDescriptor {
 
 export const ASL_MODEL: Readonly<ModelDescriptor> = {
   name: "tm-my-image-model",
-  classes: [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-    "del",
-    "nothing",
-    "space",
-  ],
-  modelJson:
-    "https://teachablemachine.withgoogle.com/models/KUlnb9rP4/model.json",
+  classes: ["A", "B", "C", "D", "O", "R", "N"],
+  modelJson: "https://storage.googleapis.com/tm-model/URTX1RHPl/model.json",
   metadataJson:
-    "https://teachablemachine.withgoogle.com/models/KUlnb9rP4/metadata.json",
+    "https://storage.googleapis.com/tm-model/URTX1RHPl/metadata.json",
 };
 
 export interface ModelAnswer {

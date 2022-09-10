@@ -24,36 +24,11 @@ import {
 // Components
 import Prediction from "../../components/Prediction";
 
-const letters = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-];
+const letters = ["A", "B", "C", "D"];
 
 const getHighestPrediction = (array: string[]) => {
+  console.log("ARRAY", array);
+
   const maxValue = array.reduce((previous, current, i, arr) =>
     arr.filter((item) => item === previous).length >
     arr.filter((item) => item === current).length
@@ -111,14 +86,14 @@ const Learn = () => {
           duration: 2000,
         });
         // Test
-        setPresentLetter(presentLetter + 1);
+        // setPresentLetter(presentLetter + 1);
       }
       setPredictions([]);
     }
   }, [isRecording, predictedLetter]);
 
   useEffect(() => {
-    if (presentLetter > 25) {
+    if (presentLetter > 3) {
       onOpen();
       console.log("Completed");
     }
@@ -213,10 +188,9 @@ const Learn = () => {
             </Box>
             <Box w="100%">
               <Image
-                // TODO: Find way to host images
-                src={`https://github.com/miluckshan-j/public-project-assets/blob/4b123cba730477e8de605dfb71c0a18250811b61/asl-game-app/${letters[presentLetter]}.jpg`}
+                src={`https://res.cloudinary.com/dufl0llvg/image/upload/${letters[presentLetter]}.jpg`}
                 alt={letters[presentLetter]}
-                fallbackSrc="https://via.placeholder.com/150/EDF2F7/EDF2F7?Text="
+                fallbackSrc={`https://via.placeholder.com/150/EDF2F7/EDF2F7?Text=${letters[presentLetter]}`}
               />
             </Box>
           </Flex>
