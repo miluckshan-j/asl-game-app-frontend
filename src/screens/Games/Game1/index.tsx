@@ -51,7 +51,7 @@ const Game1 = () => {
   const [predictedLetter, setPredictedLetter] = useState("");
   const [predictions, setPredictions] = useState([""]);
   const [presentCell, setPresentCell] = useState(0);
-  const [word, setWord] = useState("PRIMO");
+  const [word, setWord] = useState("ACORN");
   const [isCheck, setIsCheck] = useState(false);
   const [isClear, setIsClear] = useState(false);
   const [tries, setTries] = useState(1);
@@ -120,7 +120,7 @@ const Game1 = () => {
   };
 
   useEffect(() => {
-    if (tries === 6) {
+    if (tries === 2) {
       if (isAuthenticated) {
         addGameResult();
       } else {
@@ -606,7 +606,7 @@ const Game1 = () => {
               isLoading={isRecording}
               loadingText="Recording"
               onClick={() => setIsRecording(true)}
-              disabled={presentCell === 5}
+              disabled={presentCell === 5 || tries === 2}
             >
               Record
             </Button>
@@ -620,7 +620,7 @@ const Game1 = () => {
               setTry={setTries}
               presentTry={tries}
               cellNumber={0}
-              cellLetter="P"
+              cellLetter="A"
               predictions={predictions}
               setPredictions={setPredictions}
               word={word}
@@ -638,7 +638,7 @@ const Game1 = () => {
               setTry={setTries}
               presentTry={tries}
               cellNumber={1}
-              cellLetter="R"
+              cellLetter="C"
               predictions={predictions}
               setPredictions={setPredictions}
               word={word}
@@ -656,7 +656,7 @@ const Game1 = () => {
               setTry={setTries}
               presentTry={tries}
               cellNumber={2}
-              cellLetter="I"
+              cellLetter="O"
               predictions={predictions}
               setPredictions={setPredictions}
               word={word}
@@ -674,7 +674,7 @@ const Game1 = () => {
               setTry={setTries}
               presentTry={tries}
               cellNumber={3}
-              cellLetter="M"
+              cellLetter="R"
               predictions={predictions}
               setPredictions={setPredictions}
               word={word}
@@ -692,7 +692,7 @@ const Game1 = () => {
               setTry={setTries}
               presentTry={tries}
               cellNumber={4}
-              cellLetter="O"
+              cellLetter="N"
               predictions={predictions}
               setPredictions={setPredictions}
               word={word}
@@ -704,7 +704,7 @@ const Game1 = () => {
               answerHandler={answerHandler}
             />
           </HStack>
-          <HStack w={"100%"} paddingX={10} marginBottom={2}>
+          {/* <HStack w={"100%"} paddingX={10} marginBottom={2}>
             <Cell
               presentCell={presentCell}
               setPresentCell={setPresentCell}
@@ -1071,12 +1071,12 @@ const Game1 = () => {
               setIsClear={setIsClear}
               answerHandler={answerHandler}
             />
-          </HStack>
+          </HStack> */}
           {/* TODO: Refactor Code later using <CellRow /> */}
           <Button
             colorScheme="blue"
             onClick={checkAnswer}
-            disabled={tries === 6}
+            disabled={tries === 2}
           >
             Check
           </Button>
