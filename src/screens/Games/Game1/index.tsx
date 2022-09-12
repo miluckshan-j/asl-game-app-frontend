@@ -146,11 +146,11 @@ const Game1 = () => {
     if (presentCell === 5) {
       // TODO: Make a word generator
       const guessedWord =
-        rowAnswer[tries.toString()]["0"].value +
-        rowAnswer[tries.toString()]["1"].value +
-        rowAnswer[tries.toString()]["2"].value +
-        rowAnswer[tries.toString()]["3"].value +
-        rowAnswer[tries.toString()]["4"].value;
+        rowAnswer[tries.toString()]["0"].value.toLowerCase() +
+        rowAnswer[tries.toString()]["1"].value.toLowerCase() +
+        rowAnswer[tries.toString()]["2"].value.toLowerCase() +
+        rowAnswer[tries.toString()]["3"].value.toLowerCase() +
+        rowAnswer[tries.toString()]["4"].value.toLowerCase();
       // Check easy mode
       const mode = localStorage.getItem("asl_mode");
       if (mode === "easy") {
