@@ -101,14 +101,17 @@ const Profile = () => {
                   ? `(${userDetails?.badges?.length})`
                   : ""}
               </Text>
-              <Text
-                fontSize="sm"
-                paddingBottom={0}
-                align={"left"}
-                color={"red.500"}
-              >
-                To Do
-              </Text>
+              <LinkBox>
+                <LinkOverlay as={RouterLink} to="/game/1">
+                  <Image
+                    paddingTop={4}
+                    src={
+                      "https://res.cloudinary.com/dufl0llvg/image/upload/badge_wordle_1.png"
+                    }
+                    w="25%"
+                  />
+                </LinkOverlay>
+              </LinkBox>
             </VStack>
             <Divider marginY={5} />
             <VStack w="100%" spacing={0} paddingY={3} alignItems={"start"}>
