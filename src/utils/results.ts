@@ -1,4 +1,4 @@
-export const generateResultText = (result: object) => {
+export const generateResultText = (result: object, url:string) => {
   let text = "Hey! Check out my Wordle score in Signle App\n";
   Object.entries(result).forEach((key, index) => {
     Object.entries(key[1]).forEach((key: any, index) => {
@@ -10,6 +10,6 @@ export const generateResultText = (result: object) => {
     });
     text = text + "\n";
   });
-  text = text + "Check it out at: [TODO: URL]";
+  text = text + "Check it out at: " + url;
   return text;
 };

@@ -196,7 +196,7 @@ const Game1 = () => {
   };
 
   const copyResult = () => {
-    const text = generateResultText(rowAnswer);
+    const text = generateResultText(rowAnswer, window.location.href);
     navigator.clipboard.writeText(text);
     toast({
       title: "Result copied to clipboard!",
