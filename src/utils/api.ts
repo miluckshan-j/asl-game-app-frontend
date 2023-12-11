@@ -7,7 +7,7 @@ const axiosClient = axios.create();
 axiosClient.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 axiosClient.defaults.headers.common["Content-Type"] = "application/json";
 axiosClient.defaults.headers.common["Authorization"] =
-  "Bearer " + localStorage.getItem("asl_token") || "Bearer ";
+  "Bearer " + localStorage.getItem("bsl_token") || "Bearer ";
 axiosClient.defaults.timeout = 10000;
 
 const errorObject = {

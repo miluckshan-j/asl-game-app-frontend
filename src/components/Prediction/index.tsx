@@ -9,7 +9,7 @@ import Webcam from "../Webcam";
 import { useModel } from "../../hooks/useModel";
 
 // Model
-import { ASL_MODEL } from "../../Model";
+import { BSL_MODEL } from "../../Model";
 
 interface PredictionProps {
   isRecording: boolean;
@@ -18,7 +18,7 @@ interface PredictionProps {
 }
 
 const Prediction = (props: PredictionProps) => {
-  const { isModelLoaded, predictClass } = useModel(ASL_MODEL);
+  const { isModelLoaded, predictClass } = useModel(BSL_MODEL);
   const [predictedClass, setPredictedClass] = useState("");
 
   useEffect(() => {

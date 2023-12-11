@@ -144,7 +144,7 @@ const Learn = () => {
           <ModalFooter>
             <Text fontSize="sm" color={"gray.500"} align={"left"}>
               This is a project done to evaluate the benefits of gamifying
-              learning ASL. Please{" "}
+              learning BSL. Please{" "}
               <Link href="#" color="blue.500" isExternal>
                 Provide Feedback
               </Link>

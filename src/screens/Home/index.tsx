@@ -42,7 +42,7 @@ const Home = () => {
             paddingBottom={3}
             align={"left"}
           >
-            Learn American Sign Language and get familiar with Signle
+            Learn British Sign Language and get familiar with SIGNQUEST
           </Text>
           <Grid templateColumns="repeat(2, 1fr)" gap={6} paddingBottom={4}>
             <LinkBox>
@@ -65,7 +65,7 @@ const Home = () => {
                       Alphabets
                     </Text>
                     <Text fontSize="sm" color={"black.300"} align={"left"}>
-                      Practice A-Z using ASL
+                      Practice A-Z using BSL
                     </Text>
                   </VStack>
                 </LinkOverlay>
@@ -82,7 +82,7 @@ const Home = () => {
             align={"left"}
           >
             Play and win badges with a wide selection of games while learning
-            American Sign Language
+            British Sign Language
           </Text>
           <Grid templateColumns="repeat(2, 1fr)" gap={6} paddingBottom={4}>
             <LinkBox>

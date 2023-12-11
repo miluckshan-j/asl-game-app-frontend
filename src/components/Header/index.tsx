@@ -29,7 +29,7 @@ import {
 } from "react-icons/ai";
 
 // Assets
-import ASLAlphabets from "../../assets/alphabets/ASL-Alphabets.jpg";
+import BSLAlphabets from "../../assets/alphabets/BSL-Alphabets.jpg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -81,7 +81,7 @@ const Header = () => {
               page to train and get familiar with the app for the best result
             </Text>
             <Flex w="100%" paddingX={"10"}>
-              <Image src={ASLAlphabets} alt={"ASL Alphabets"} />
+              <Image src={BSLAlphabets} alt={"BSL Alphabets"} />
             </Flex>
           </ModalBody>
           <Divider />

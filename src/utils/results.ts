@@ -1,5 +1,5 @@
-export const generateResultText = (result: object, url:string) => {
-  let text = "Hey! Check out my Wordle score in Signle App\n";
+export const generateResultText = (result: object, url: string) => {
+  let text = "Hey! Check out my Wordle score in SIGNQUEST App\n";
   Object.entries(result).forEach((key, index) => {
     Object.entries(key[1]).forEach((key: any, index) => {
       key[1].guess === "CORRECT_SPOT"

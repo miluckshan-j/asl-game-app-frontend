@@ -52,7 +52,7 @@ const Login = () => {
         duration: 3000,
       });
       // Add to token local storage
-      localStorage.setItem("asl_token", response.data.data.token);
+      localStorage.setItem("bsl_token", response.data.data.token);
       dispatch(setAuthenticatedStatus(true));
       navigate("/");
     } else {

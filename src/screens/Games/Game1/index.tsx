@@ -51,7 +51,7 @@ const Game1 = () => {
   const [predictedLetter, setPredictedLetter] = useState("");
   const [predictions, setPredictions] = useState([""]);
   const [presentCell, setPresentCell] = useState(0);
-  const [word, setWord] = useState("ACORN");
+  const [word, setWord] = useState("WATER");
   const [isCheck, setIsCheck] = useState(false);
   const [isClear, setIsClear] = useState(false);
   const [tries, setTries] = useState(1);
@@ -152,7 +152,7 @@ const Game1 = () => {
         rowAnswer[tries.toString()]["3"].value.toLowerCase() +
         rowAnswer[tries.toString()]["4"].value.toLowerCase();
       // Check easy mode
-      const mode = localStorage.getItem("asl_mode");
+      const mode = localStorage.getItem("bsl_mode");
       if (mode === "easy") {
         setTries(tries + 1);
         setPresentCell(0);
@@ -578,7 +578,7 @@ const Game1 = () => {
           <ModalFooter>
             <Text fontSize="sm" color={"gray.500"} align={"left"}>
               This is a project done to evaluate the benefits of gamifying
-              learning ASL. Please{" "}
+              learning BSL. Please{" "}
               <Link href="#" color="blue.500" isExternal>
                 Provide Feedback
               </Link>

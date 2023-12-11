@@ -16,7 +16,7 @@ import { AiOutlineRight } from "react-icons/ai";
 
 const Settings = () => {
   const [modeIsChecked, setModeIsChecked] = useState(
-    localStorage.getItem("asl_mode") === "easy" ? true : false
+    localStorage.getItem("bsl_mode") === "easy" ? true : false
   );
 
   const navigate = useNavigate();
@@ -24,10 +24,10 @@ const Settings = () => {
   const modeHandler = (event: any) => {
     if (event.target.checked) {
       setModeIsChecked(true);
-      localStorage.setItem("asl_mode", "easy");
+      localStorage.setItem("bsl_mode", "easy");
     } else {
       setModeIsChecked(false);
-      localStorage.setItem("asl_mode", "hard");
+      localStorage.setItem("bsl_mode", "hard");
     }
   };
 
