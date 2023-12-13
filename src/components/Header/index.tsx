@@ -111,7 +111,7 @@ const Header = () => {
       <Spacer />
       <Box>
         <Heading as="h2" size="xl">
-          Signle
+          SIGNQUEST
         </Heading>
       </Box>
       <Spacer />

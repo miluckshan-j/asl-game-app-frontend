@@ -5,7 +5,7 @@ export interface ModelDescriptor {
   metadataJson: string;
 }
 
-export const ASL_MODEL: Readonly<ModelDescriptor> = {
+export const BSL_MODEL: Readonly<ModelDescriptor> = {
   name: "tm-my-image-model",
   classes: ["A", "B", "C", "D", "E", "F", "G", "T", "R", "W"],
   modelJson: "https://teachablemachine.withgoogle.com/models/DqEEYxCih/model.json",

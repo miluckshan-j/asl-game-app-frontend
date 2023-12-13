@@ -48,7 +48,7 @@ const Cell = (props: CellProps) => {
       props.predictions.length > 1 &&
       props.isRecording === false
     ) {
-      // Get highest occurance
+      // Retrieve the  highest instance
       const predictedLetter = getHighestPrediction(props.predictions);
       if (
         predictedLetter === "space" ||
